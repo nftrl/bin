@@ -16,11 +16,28 @@ _cprintf () {
 # print jelb
 _printhelp () {
     printf "usage:\n"
-    printf "\tpop-test.sh -d <mappe med .fsx filer> [-t <tmp mappe>] [-z <zip mappe>] [-q|--quiet] [-e <exe mappe>]\n"
+    printf "\tpop-test.sh [-d <mappe med .fsx filer>] [-t <tmp mappe>] [-z <zip mappe>] [-q|--quiet] [-e <exe mappe>]\n"
+    printf "\n"
+    printf "\t-d\n"
+    printf "\tdefault: ./\n"
+    printf "\t\tMappen med .fsx filer.\n"
+    printf "\n"
+    printf "\t-t\n"
+    printf "\tdefault: /tmp/pop/\n"
+    printf "\t\tMappen hvori logfiler og .exe (by default) ligger.\n"
+    printf "\n"
+    printf "\t-z\n"
+    printf "\tdefault: off\n"
+    printf "\t\tZipper .fsx filerne i <zip mappe>.\n"
     printf "\n"
     printf "\t-q --quiet\n"
+    printf "\tdefault: off\n"
     printf "\t\tGør sådan, at programmet ikke skriver noget til STDOUT.\n"
     printf "\t\tSkriver stadig til log filer.\n"
+    printf "\n"
+    printf "\t-e\n"
+    printf "\tdefault: <tmp mappe>/exe/\n"
+    printf "\t\tMappen hvori .exe filerne bliver skrevet til.\n"
 }
 
 # Read arguments
