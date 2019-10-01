@@ -1,4 +1,5 @@
 #!/bin/bash
+# Marcus Larsen
 
 # flushes the line above the cursor
 _overwrite () {
@@ -15,8 +16,7 @@ _cprintf () {
 
 # print jelb
 _printhelp () {
-    printf "usage:\n"
-    printf "\tpop-test.sh [-d <mappe med .fsx filer>] [-t <tmp mappe>] [-z <zip mappe>] [-q|--quiet] [-e <exe mappe>]\n"
+    printf "usage:\tpop-test.sh [-d <mappe med .fsx filer>] [-t <tmp mappe>] [-z <zip mappe>] [-q|--quiet] [-e <exe mappe>]\n"
     printf "\n"
     printf "\t-d\n"
     printf "\tdefault: ./\n"
