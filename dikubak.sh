@@ -1,3 +1,3 @@
 #!/bin/bash
 
-zip -r /home/nftrl/Documents/diku.bak.zip /home/nftrl/Documents/diku
+zip -r /home/$HOME/Documents/diku.bak.zip /home/nftrl/Documents/diku
