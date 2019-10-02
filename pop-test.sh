@@ -64,7 +64,7 @@ done
 
 # Create tmp_dir
 [ -z $tmp_dir ] && tmp_dir=/tmp/pop # hvis $tmp_dir er tom
-mkdir -p $tmp_dir
+mkdir $tmp_dir 2>/dev/null && chmod 700 $tmp_dir
 
 # Create logfiles
 log_output=$tmp_dir/stdout.txt
