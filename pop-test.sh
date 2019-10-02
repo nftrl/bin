@@ -69,8 +69,8 @@ mkdir -p $tmp_dir
 # Create logfiles
 log_output=$tmp_dir/stdout.txt
 log_error=$tmp_dir/stderr.txt
-echo >$log_output
-echo >$log_error
+printf "" >$log_output
+printf "" >$log_error
 
 # Create exe_dir
 [ -z $exe_dir ] && exe_dir=$tmp_dir/exe
@@ -87,37 +87,47 @@ fi
 # Start med at teste filerne
 for f_fsx in $files
 do
-    f_exe="${f_fsx%fsx}exe"
+    f_exe="${f_fsx%.fsx}.exe"
 
-    # Print header to $log_output
-    printf "\n\n...........................$f_fsx\n\n" >>$log_output
-
+    # Print til terminal
     [ -z "$quiet" ] && printf "\r%-10s\tCompiling\n" $f_fsx
+    # Compile .fsx
     if fsharpc --nologo -o "$exe_dir/$f_exe" "$working_dir/$f_fsx" 1>/dev/null 2>>$log_error
     then # Compiles
+        # Print header to $log_output
+        [ -s "$log_output" ] && printf "\n\n" >>$log_output
+        printf "........................... $f_fsx\n" >>$log_output
+
+        # Print til terminal
         [ -z "$quiet" ] && _overwrite
         [ -z "$quiet" ] && printf "\r%-10s\tRunning\n" $f_fsx
 
+        # Kør .exe
         if mono "$exe_dir/$f_exe" 1>>$log_output 2>>$log_error
         then # Runs
+            # Print til terminal
             [ -z "$quiet" ] && _overwrite
             [ -z "$quiet" ] && printf "\r%-10s\tDone\n" $f_fsx
         else # ERROR: Doesn't run
+            # Print til terminal
             [ -z "$quiet" ] && _overwrite
-            printf "\r%-10s\tERROR: Can't run file\n" $f_exe
+            [ -z "$quiet" ] && printf "\r%-10s\tERROR: Can't run file\n" $f_exe
             continue
         fi
     else # ERROR: Doesn't compile
+        # Print til terminal
         [ -z "$quiet" ] && _overwrite
-        printf "\r%-10s\tERROR: Can't compile file\n" $f_fsx
+        [ -z "$quiet" ] && printf "\r%-10s\tERROR: Can't compile file\n" $f_fsx
         continue
     fi
 done
 
 if [ ! -z $zip_dir ]
 then
+    # Print til terminal
     [ -z "$quiet" ] && printf "\n"
     [ -z "$quiet" ] && printf "Zipping files to ${zip_dir}\n"
+
     if [ -z $quiet ]
     then
         for f in $files
